@@ -1,0 +1,45 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args)
+    {
+        int attempt=6;
+        int correct=0;
+        int incorrect=0;
+        int rounds=0;
+        String playAgain;
+        Random rand=new Random();
+        int randInt= rand.nextInt(100);
+        Scanner sc=new Scanner(System.in);
+        
+        do {
+            rounds++;
+            System.out.println("Round : "+rounds);
+            for (int i=1;i<=attempt;i++){
+                System.out.println("Attempt : "+i);
+                System.out.println("Enter a number to guess the random number.");
+
+                int n= sc.nextInt();
+                if (randInt==n){
+                    System.out.println("Correct");
+                    correct++;
+                } else if (randInt>n){
+                    System.out.println("Too high");
+                    incorrect++;
+                }else{
+                    System.out.println("Too low");
+                    incorrect++;
+                }
+            }
+
+            System.out.println("Out of attempts.");
+            System.out.println("The correct number is "+randInt);
+            System.out.println("Do you want to play again (Yes/No)");
+            playAgain=sc.next().toLowerCase();
+        }while (playAgain.equals("yes")||playAgain.equals("y"));
+
+        System.out.println("You played "+rounds+" rounds.\nOut of which.");
+        System.out.println("Correct attempted = "+correct+"\nIncorrect attempted = "+incorrect);
+    }
+}
